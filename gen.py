@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
 #
 # Copyright (c) 2003 Maxim Sobolev <sobomax@FreeBSD.org>
 # All rights reserved.
