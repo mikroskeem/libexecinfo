@@ -30,6 +30,8 @@ CC=cc
 AR=ar
 EXECINFO_CFLAGS=$(CFLAGS) -O2 -pipe -fno-strict-aliasing -std=gnu99 -fstack-protector -c
 EXECINFO_LDFLAGS=$(LDFLAGS)
+DESTDIR := /usr
+LIBDIR := $(DESTDIR)/lib
 
 all: static dynamic
 
@@ -45,3 +47,10 @@ dynamic:
 
 clean:
 	rm -rf *.o *.So *.a *.so *.so.*
+
+install:
+	install -D -m755 execinfo.h $(DESTDIR)/include/execinfo.h
+	install -D -m755 stacktraverse.h $(DESTDIR)/include/stacktraverse.h
+	install -D -m755 libexecinfo.a $(DESTDIR)/lib/libexecinfo.a
+	install -D -m755 libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so.1
+	ln -sf $(LIBDIR)/libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so
