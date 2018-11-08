@@ -44,4 +44,4 @@ dynamic:
 	$(CC) -shared -Wl,-soname,libexecinfo.so.1 -o libexecinfo.so.1 stacktraverse.So execinfo.So
 
 clean:
-	rm -rf *.o *.So *.a *.so
+	rm -rf *.o *.So *.a *.so *.so.*
