@@ -26,6 +26,7 @@
  * $Id: execinfo.c,v 1.3 2004/07/19 05:21:09 sobomax Exp $
  */
 
+#define _GNU_SOURCE
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <dlfcn.h>
