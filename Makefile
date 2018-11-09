@@ -49,8 +49,8 @@ clean:
 	rm -rf *.o *.So *.a *.so *.so.*
 
 install:
-	install -D -m755 execinfo.h $(DESTDIR)/include/execinfo.h
-	install -D -m755 stacktraverse.h $(DESTDIR)/include/stacktraverse.h
+	install -D -m644 execinfo.h $(DESTDIR)/include/execinfo.h
+	install -D -m644 stacktraverse.h $(DESTDIR)/include/stacktraverse.h
 	install -D -m755 libexecinfo.a $(DESTDIR)/lib/libexecinfo.a
 	install -D -m755 libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so.1
 	ln -sf $(LIBDIR)/libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so
