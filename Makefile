@@ -30,8 +30,10 @@ CC=cc
 AR=ar
 EXECINFO_CFLAGS=$(CFLAGS) -O2 -pipe -fno-strict-aliasing -std=gnu99 -fstack-protector -c
 EXECINFO_LDFLAGS=$(LDFLAGS)
-DESTDIR := /usr
-LIBDIR := $(DESTDIR)/lib
+DESTDIR :=
+PREFIX :=
+LIBDIR := $(PREFIX)/lib
+INCLUDEDIR := $(PREFIX)/include
 
 all: static dynamic
 
@@ -48,9 +50,15 @@ dynamic:
 clean:
 	rm -rf *.o *.So *.a *.so *.so.*
 
-install:
-	install -D -m644 execinfo.h $(DESTDIR)/include/execinfo.h
-	install -D -m644 stacktraverse.h $(DESTDIR)/include/stacktraverse.h
-	install -D -m755 libexecinfo.a $(DESTDIR)/lib/libexecinfo.a
-	install -D -m755 libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so.1
-	ln -sf $(LIBDIR)/libexecinfo.so.1 $(DESTDIR)/lib/libexecinfo.so
+install-static:	static
+	install -D -m644 libexecinfo.a $(DESTDIR)$(LIBDIR)/libexecinfo.a
+
+install-dynamic: dynamic
+	install -D -m755 libexecinfo.so.1 $(DESTDIR)$(LIBDIR)/libexecinfo.so.1
+	ln -sf libexecinfo.so.1 $(DESTDIR)$(LIBDIR)/libexecinfo.so
+
+install-headers:
+	install -D -m644 execinfo.h $(DESTDIR)$(INCLUDEDIR)/execinfo.h
+	install -D -m644 stacktraverse.h $(DESTDIR)$(INCLUDEDIR)/stacktraverse.h
+
+install: install-dynamic install-static install-headers
