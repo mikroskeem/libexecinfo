@@ -26,8 +26,8 @@
 #
 # Linux Makefile by Matt Smith <mcs@darkregion.net>, 2011/01/04
 
-CC=cc
-AR=ar
+CC?=cc
+AR?=ar
 EXECINFO_CFLAGS=$(CFLAGS) -O2 -pipe -fno-strict-aliasing -std=gnu99 -fstack-protector -c
 EXECINFO_LDFLAGS=$(LDFLAGS)
 DESTDIR :=
